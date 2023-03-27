@@ -5,16 +5,14 @@ public class Base : MonoBehaviour {
 	internal BaseType baseType;
 	internal bool enemySide = false;
 	private MeshRenderer main;
-	internal TextMeshProUGUI identification;
+	private TextMeshProUGUI identification;
 
-	public void Initiate(string identification, Vector3 position, BaseType baseType, bool enemySide) {
+	public void Initiate(string identification, Vector3 position, BaseType baseType) {
 		transform.position = position;
 		this.baseType = baseType;
-		this.enemySide = enemySide;
 
 		main = transform.Find("Main").GetComponent<MeshRenderer>();
 		main.material.mainTexture = UnitManager.Instance.GetBaseTexture(baseType);
-		main.material.color = enemySide ? Color.red : Color.black;
 		if (baseType == BaseType.Airfield)	main.transform.localScale = new Vector3(1.5f, 1, 1);
 		
 		this.identification = transform.Find("Canvas/Name").GetComponent<TextMeshProUGUI>();
